@@ -35,6 +35,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sucuk.sucuk.MenuActivity" />
         </activity>
+
+        <provider
+            android:authorities="com.sucuk.suck.orderprovider"
+            android:name=".OrderProvider"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

@@ -16,11 +16,6 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
-import com.firebase.client.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginActivity extends Activity {
 
@@ -36,7 +31,6 @@ public class LoginActivity extends Activity {
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_login);
         rootRef = new CustomFirebase();
-
         btnSignup = (Button) findViewById(R.id.btnSignup);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPass = (EditText) findViewById(R.id.etPass);
@@ -75,7 +69,7 @@ public class LoginActivity extends Activity {
                                     startActivity(intent);
 
                                 }
-                                else
+                                else if(dataSnapshot.getKey().equals("role") &&dataSnapshot.getValue().equals("c"))
                                 {
                                     pB.setVisibility(View.GONE);
                                     Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
