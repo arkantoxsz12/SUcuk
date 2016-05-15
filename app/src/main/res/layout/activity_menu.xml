@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:id="@+id/menuList"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        />
 
     <at.markushi.ui.CircleButton
         android:layout_width="50dp"

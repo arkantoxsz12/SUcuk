@@ -9,7 +9,10 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="70dp"
-        android:layout_height="70dp" />
+        android:layout_height="70dp"
+        android:src="@drawable/add"
+        android:padding="10dp" />
+
 
     <TextView
         android:id="@+id/mealName"
@@ -23,7 +26,6 @@
         android:singleLine="true"
         android:text="Meal Name"
         android:textColor="@color/colorMenuItem"
-
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -37,19 +39,8 @@
         android:layout_below="@+id/mealName"
         android:layout_alignLeft="@+id/mealName"
         android:layout_alignStart="@+id/mealName"
-        android:layout_toLeftOf="@+id/add"
-        android:layout_toStartOf="@+id/add" />
+        />
 
-    <at.markushi.ui.CircleButton
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        app:cb_color="@color/colorAdd"
-        app:cb_pressedRingWidth="5dp"
-        android:src="@drawable/ic_action_add"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/add" />
 
 
 

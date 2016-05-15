@@ -164,5 +164,25 @@
         android:layout_alignLeft="@+id/labelOrder"
         android:layout_alignStart="@+id/labelOrder" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Accept"
+        android:background="@color/colorText"
+        android:id="@+id/btnAccept"
+        android:layout_marginBottom="69dp"
+        android:layout_alignBottom="@+id/btnDeny"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deny"
+        android:background="@color/colorText"
+        android:id="@+id/btnDeny"
+        android:layout_marginTop="450dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.sucuk.sucuk;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.firebase.client.Firebase;
 
 public class RestaurantActivity extends Activity {
     ListView list;
+    public static com.sucuk.sucuk.OrderItem item;
 
     public String getRestaurant() {
         return LoginActivity.remail.substring(0, LoginActivity.remail.indexOf("@"));
@@ -45,8 +47,9 @@ public class RestaurantActivity extends Activity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item = (com.sucuk.sucuk.OrderItem) parent.getItemAtPosition(position);
+
                 Intent intent = new Intent(RestaurantActivity.this, OrderDetailsActivity.class);
-                intent.putExtra()
                 startActivity(intent);
             }
         });
