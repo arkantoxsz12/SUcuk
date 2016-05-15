@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
+    <TextView
+        android:id="@+id/labelDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="false"
+        android:layout_margin="4dp"
+        android:layout_toEndOf="@+id/image"
+        android:layout_toRightOf="@+id/image"
+        android:singleLine="true"
+        android:text="Order Date"
+        android:textColor="@color/colorMenuItem"
+
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert Date Here"
+        android:id="@+id/date"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        android:layout_below="@+id/labelDate"
+        android:layout_alignLeft="@+id/labelDate"
+        android:layout_alignStart="@+id/labelDate" />
+
+    <TextView
+        android:id="@+id/labelOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="Order"
+        android:textColor="@color/colorMenuItem"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_below="@+id/date"
+        android:layout_toEndOf="@+id/image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert Order Here"
+        android:id="@+id/order"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        android:layout_below="@+id/labelOrder"
+        android:layout_alignLeft="@+id/labelOrder"
+        android:layout_alignStart="@+id/labelOrder" />
+
+    <TextView
+        android:id="@+id/labelAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="Address"
+        android:textColor="@color/colorMenuItem"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_below="@+id/order"
+        android:layout_toEndOf="@+id/image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert Address Here"
+        android:id="@+id/address"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        android:layout_below="@+id/labelAddress"
+        android:layout_alignLeft="@+id/labelOrder"
+        android:layout_alignStart="@+id/labelOrder" />
+
+    <TextView
+        android:id="@+id/labelName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="Name"
+        android:textColor="@color/colorMenuItem"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_below="@+id/address"
+        android:layout_toEndOf="@+id/image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert Name Here"
+        android:id="@+id/name"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        android:layout_below="@+id/labelName"
+        android:layout_alignLeft="@+id/labelOrder"
+        android:layout_alignStart="@+id/labelOrder" />
+
+    <TextView
+        android:id="@+id/labelPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="Payment"
+        android:textColor="@color/colorMenuItem"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_below="@+id/name"
+        android:layout_toEndOf="@+id/image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert Payment Here"
+        android:id="@+id/payment"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        android:layout_below="@+id/labelPayment"
+        android:layout_alignLeft="@+id/labelOrder"
+        android:layout_alignStart="@+id/labelOrder" />
+
+    <TextView
+        android:id="@+id/labelPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="Phone"
+        android:textColor="@color/colorMenuItem"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_below="@+id/payment"
+        android:layout_toEndOf="@+id/image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert Phone Here"
+        android:id="@+id/phone"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        android:layout_below="@+id/labelPhone"
+        android:layout_alignLeft="@+id/labelOrder"
+        android:layout_alignStart="@+id/labelOrder" />
+
+
+</RelativeLayout>
