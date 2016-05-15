@@ -15,9 +15,9 @@ import java.util.Map;
 /**
  * Created by eralpsahin on 5/14/2016.
  */
-public class Authentication extends Firebase{
+public class CustomFirebase extends Firebase{
     static public final String FIREBASE_URL = "https://dazzling-torch-792.firebaseio.com";
-    public Authentication() {
+    public CustomFirebase() {
         super(FIREBASE_URL);
     }
     public void userCreate(final String email, final String password)

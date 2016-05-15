@@ -1,14 +1,15 @@
 package com.sucuk.sucuk;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.firebase.client.AuthData;
@@ -18,24 +19,29 @@ import com.firebase.client.FirebaseError;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
-    Authentication mRootRef;
-    Button btnLogout;
-    Button btnLogin;
+    CustomFirebase rootRef;
+    //pass is rest
+    private static final int CUSTOMER_REQUEST_CODE = 1001;
+    private Button btnLogout;
+    private Button btnLogin;
+    private ProgressBar pB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_login);
-        mRootRef=new Authentication();
+        rootRef=new CustomFirebase();
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPass = (EditText) findViewById(R.id.etPass);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        pB = (ProgressBar)findViewById(R.id.progressBar);
+        pB.setVisibility(View.GONE);
         btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                pB.setVisibility(View.VISIBLE);
                 final String email=etEmail.getText().toString().trim();
                 String pass=etPass.getText().toString().trim();
                 Firebase.AuthResultHandler authResultHandler = new Firebase.AuthResultHandler() {
@@ -43,29 +49,32 @@ public class LoginActivity extends AppCompatActivity {
                     public void onAuthenticated(AuthData authData) {
                         Log.d("Login","success");
                         Log.d("Login UID",authData.getUid().toString());
-                        Intent intent = new Intent(LoginActivity.this,RestaurantActivity.class);
-                        startActivityForResult(intent,2);
+
                         Map<String, String> map = new HashMap<String, String>();
-                        map.put("uname",email.substring(0,email.indexOf('@')));
-                        mRootRef.child("users").child(authData.getUid()).setValue(map);
+                        String uname=email.substring(0,email.indexOf('@'));
+                        map.put("uname",uname);
+                        map.put("role","c");
+                        rootRef.child("users").child(authData.getUid()).setValue(map);
+                        pB.setVisibility(View.GONE);
+                        Intent intent = new Intent(LoginActivity.this,CustomerActivity.class);
+                        startActivity(intent);
                     }
                     @Override
                     public void onAuthenticationError(FirebaseError firebaseError) {
                         Log.d("Login","Fail");
+                        pB.setVisibility(View.GONE);
                     }
-
                 };
-                mRootRef.authWithPassword(email,pass,authResultHandler);
+                rootRef.authWithPassword(email,pass,authResultHandler);
             }
         });
         btnLogout = (Button) findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                mRootRef.userLogout();
+                rootRef.userLogout();
             }
         });
-        //mRootRef.userCreate("dgur@gmail.com","cum")
     }
     public void sendToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
