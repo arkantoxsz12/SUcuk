@@ -1,28 +1,26 @@
 package com.sucuk.sucuk;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.view.LayoutInflater;
+import android.app.Activity;
+;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CursorAdapter;
+
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
+import com.firebase.ui.FirebaseListAdapter;
 
-public class MenuAdapter extends CursorAdapter {
-    public MenuAdapter(Context context, Cursor c, int flags) {
-        super(context, c, flags);
+
+public class MenuAdapter extends FirebaseListAdapter<MenuItem> {
+
+
+    public MenuAdapter(Activity activity, Class<MenuItem> modelClass, int modelLayout, Firebase ref) {
+        super(activity, modelClass,R.layout.meal_list_item, ref);
     }
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.meal_list_item,parent,false);
+    protected void populateView(View view, MenuItem menuItem, int i) {
+        ((TextView)view.findViewById(R.id.mealPrice)).setText(Double.toString(menuItem.getPrice()));
+        ((TextView)view.findViewById(R.id.mealName)).setText(menuItem.getName());
     }
 
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-        TextView mealName = (TextView) view.findViewById(R.id.mealName);
-        TextView mealPrice = (TextView) view.findViewById(R.id.mealPrice);
-
-    }
 }
