@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+
+
+
+    <Button
+        android:id="@+id/dialogOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Ok "
+        android:layout_below="@+id/payment"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/dialogCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:layout_below="@+id/payment"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/payment"
+        android:spinnerMode="dialog"
+        android:layout_below="@+id/editAddress"
+        android:layout_alignStart="@+id/dialogOK"
+        android:layout_alignEnd="@+id/dialogCancel" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPhone"
+        android:hint="Phone"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editAddress"
+        android:layout_below="@+id/editPhone"
+        android:hint="Address"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

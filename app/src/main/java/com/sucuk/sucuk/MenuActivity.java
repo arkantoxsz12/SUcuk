@@ -25,31 +25,12 @@ import at.markushi.ui.CircleButton;
 public class MenuActivity extends Activity {
 
     ListView list;
-    String restaurant="";
+    String restaurant=CustomerActivity.restaurantID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-
-        switch (CustomerActivity.restaurantID) {
-            case 2131492946:
-                restaurant="inncafe";
-                break;
-            case 2131492947:
-                restaurant="kopuklu";
-                break;
-            case 2131492948:
-                restaurant="piazza";
-                break;
-            case 2131492949:
-                restaurant="pigastro";
-                break;
-            case 2131492950:
-                restaurant="sima";
-                break;
-        }
-        Log.d("Tag",restaurant);
         list = (ListView) findViewById(R.id.menuList);
         Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("restaurants").child(restaurant).child("menu");
         final ListAdapter adapter = new MenuAdapter(ref, this);
