@@ -77,4 +77,20 @@
         android:layout_below="@+id/etPass"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:id="@+id/btnSignup"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvsignup"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

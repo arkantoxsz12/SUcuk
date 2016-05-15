@@ -24,18 +24,29 @@ public class LoginActivity extends Activity {
     private static final int CUSTOMER_REQUEST_CODE = 1001;
     private Button btnLogout;
     private Button btnLogin;
+    private Button btnSignup;
     private ProgressBar pB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_login);
         rootRef=new CustomFirebase();
+
+        btnSignup = (Button) findViewById(R.id.btnSignup);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPass = (EditText) findViewById(R.id.etPass);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         pB = (ProgressBar)findViewById(R.id.progressBar);
         pB.setVisibility(View.GONE);
+
+        btnSignup.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick (View v) {
+                rootRef.userCreate(etEmail.getText().toString().trim(),etPass.getText().toString().trim());
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
