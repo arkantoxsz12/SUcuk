@@ -54,7 +54,7 @@ public class OrderProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         long id = database.insert(DBOpenHelper.TABLE_ORDER,null,values);
-
+        //TODO update or insert
         return Uri.parse(BASE_PATH+"/"+id);
     }
 
@@ -63,6 +63,7 @@ public class OrderProvider extends ContentProvider {
 
         return database.delete(DBOpenHelper.TABLE_ORDER,selection,selectionArgs);
     }
+
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {

@@ -16,12 +16,9 @@ public class CustomerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-        ContentValues values = new ContentValues();
-        values.put(DBOpenHelper.MENU_NAME," hello");
-        values.put(DBOpenHelper.MENU_PRICE,22);
-        Uri uri =getContentResolver().insert(OrderProvider.CONTENT_URI,values);
 
-        Log.d("Tag","Inserted order "+uri.getLastPathSegment());
+
+
     }
     public void sendToMenu(View v)
     {
