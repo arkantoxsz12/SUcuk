@@ -25,13 +25,10 @@ import java.util.Map;
 public class LoginActivity extends Activity {
 
     CustomFirebase rootRef;
-    //pass is rest
-    private static final int CUSTOMER_REQUEST_CODE = 1001;
     private Button btnLogout;
     private Button btnLogin;
     private Button btnSignup;
     private ProgressBar pB;
-    ArrayList<User> usernames = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

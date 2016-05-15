@@ -1,6 +1,7 @@
 package com.sucuk.sucuk;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -34,5 +35,13 @@ public class BasketActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("Rest",CustomerActivity.restaurantID);
+        setResult(RESULT_OK,intent);
+        super.onBackPressed();
     }
 }
