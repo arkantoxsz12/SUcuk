@@ -34,18 +34,23 @@ public class MenuActivity extends Activity {
 
         switch (CustomerActivity.restaurantID) {
             case 2131492946:
+                System.out.println("inncafe");
                 restaurant="inncafe";
                 break;
             case 2131492947:
+                System.out.println("kopuklu");
                 restaurant="kopuklu";
                 break;
             case 2131492948:
+                System.out.println("piazza");
                 restaurant="piazza";
                 break;
             case 2131492949:
+                System.out.println("pigastro");
                 restaurant="pigastro";
                 break;
             case 2131492950:
+                System.out.println("sima");
                 restaurant="sima";
                 break;
         }

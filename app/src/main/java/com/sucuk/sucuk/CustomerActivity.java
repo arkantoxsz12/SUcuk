@@ -24,6 +24,7 @@ public class CustomerActivity extends Activity {
     {
         Intent intent = new Intent(CustomerActivity.this,MenuActivity.class);
         restaurantID=v.getId();
+        System.out.println(restaurantID);
         startActivityForResult(intent,1);
     }
     @Override
