@@ -43,6 +43,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 rootRef.userCreate(etEmail.getText().toString().trim(), etPass.getText().toString().trim());
+                sendToast("User created!");
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
