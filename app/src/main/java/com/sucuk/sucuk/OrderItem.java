@@ -11,6 +11,7 @@ public class OrderItem {
     private String payment;
     private String phone;
     private String status;
+    private String id;
 
     public OrderItem() {
     }
@@ -69,5 +70,13 @@ public class OrderItem {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

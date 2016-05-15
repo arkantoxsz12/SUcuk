@@ -102,8 +102,8 @@ public class BasketActivity extends Activity{
                 if(editPhone.getText().toString().length()==0 || payment.length()==0){
                     Toast.makeText(context,"Please check your phone number/payment method",Toast.LENGTH_SHORT).show();
                 }else{
-
-                   Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("orders").child(CustomerActivity.restaurantID).child(randomID(32));
+                    String randomID = randomID(32);
+                   Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("orders").child(CustomerActivity.restaurantID).child(randomID);
                     OrderItem order = new OrderItem();
                     order.setAddress(editAddress.getText().toString());
                     order.setName(LoginActivity.user);
@@ -111,6 +111,7 @@ public class BasketActivity extends Activity{
                     order.setDate(getNow());
                     order.setOrder("hodo");
                     order.setPayment(payment);
+                    order.setId(randomID);
                     ref.setValue(order);
                     dialog.hide();
                     Toast.makeText(getBaseContext(), "Order taken!", Toast.LENGTH_SHORT);
