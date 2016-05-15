@@ -11,15 +11,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 public class BasketActivity extends Activity{
     final Context context=this;
+    String payment="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,16 +78,44 @@ public class BasketActivity extends Activity{
         Button buttonCancel = (Button) dialog.findViewById(R.id.dialogCancel);
         final EditText editPhone = (EditText) dialog.findViewById(R.id.editPhone);
         final EditText editAddress = (EditText) dialog.findViewById(R.id.editAddress);
+        List<String> categories = new ArrayList<String>();
+        categories.add("Cash");
+        categories.add("Credit Card");
+        Spinner spinner = (Spinner) dialog.findViewById(R.id.payment);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, categories);
+        spinner.setAdapter(dataAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                payment = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                payment="";
+            }
+        });
         buttonOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(editPhone.getText().toString().length()==0){
-                    Toast.makeText(context,"Please enter your phone number!",Toast.LENGTH_SHORT).show();
+                if(editPhone.getText().toString().length()==0 || payment.length()==0){
+                    Toast.makeText(context,"Please check your phone number/payment method",Toast.LENGTH_SHORT).show();
                 }else{
+
+                   Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("orders").child(CustomerActivity.restaurantID).child(randomID(32));
+                    OrderItem order = new OrderItem();
+                    order.setAddress(editAddress.getText().toString());
+                    order.setName("hede");
+                    order.setPhone(editPhone.getText().toString());
+                    order.setDate(getNow());
+                    order.setOrder("hodo");
+                    order.setPayment(payment);
+                    ref.setValue(order);
                     dialog.hide();
-                    Toast.makeText(getBaseContext(),"Order taken!",Toast.LENGTH_SHORT);
-                    finish();
+                    Toast.makeText(getBaseContext(), "Order taken!", Toast.LENGTH_SHORT);
+                    Uri uri = Uri.parse(OrderProvider.CONTENT_URI+"/");
+                    getContentResolver().delete(uri, "1=1", null);
                 }
 
             }
@@ -125,5 +164,19 @@ public class BasketActivity extends Activity{
 
     public void sendToast(String message) {
         Toast.makeText(BasketActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+    private String randomID(int numchars){
+        Random r = new Random();
+        StringBuffer sb = new StringBuffer();
+        while(sb.length() < numchars){
+            sb.append(Integer.toHexString(r.nextInt()));
+        }
+
+        return sb.toString().substring(0, numchars);
+    }
+    private static String getNow(){
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return formatter.format(date);
     }
 }

@@ -5,7 +5,6 @@ package com.sucuk.sucuk;
  */
 public class OrderItem {
     private String name;
-    private double price;
     private String date;
     private String order;
     private String address;
@@ -22,14 +21,6 @@ public class OrderItem {
 
     public void setName(String orderNum) {
         this.name = orderNum;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getDate() {
