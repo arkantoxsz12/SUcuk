@@ -12,4 +12,8 @@ public class RestaurantActivity extends Activity {
         setContentView(R.layout.activity_restaurant);
         setTitle("Orders");
     }
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
 }

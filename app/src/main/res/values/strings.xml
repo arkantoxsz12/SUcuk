@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Sucuk</string>
     <string name="login">Login</string>
+    <string name="title_activity_menu">Menu</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_basket">Basket</string>
 </resources>
