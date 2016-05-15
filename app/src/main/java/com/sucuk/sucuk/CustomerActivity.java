@@ -65,6 +65,10 @@ public class CustomerActivity extends Activity {
             }
         });
     }
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
 
 
 

@@ -5,6 +5,8 @@
     <color name="colorAccent">#E53935</color>
     <color name="colorAdd">#FF9800</color>
     <color name="colorText">#F4511E</color>
-    <color name="navigationBarColor">#FF9800</color>
+    <color name="navigationBarColor">#862000</color>
     <color name="windowBackground">#FFC991</color>
+    <color name="textColorPrimary">#ffffff</color>
+    <color name="colorMenuItem">#862000</color>
 </resources>

@@ -21,7 +21,8 @@
         android:layout_toEndOf="@+id/image"
         android:layout_toRightOf="@+id/image"
         android:singleLine="true"
-        android:text="Meal Title"
+        android:text="Meal Name"
+        android:textColor="@color/colorMenuItem"
 
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -36,19 +37,19 @@
         android:layout_below="@+id/mealName"
         android:layout_alignLeft="@+id/mealName"
         android:layout_alignStart="@+id/mealName"
-        android:layout_toLeftOf="@+id/view"
-        android:layout_toStartOf="@+id/view" />
+        android:layout_toLeftOf="@+id/add"
+        android:layout_toStartOf="@+id/add" />
 
     <at.markushi.ui.CircleButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         app:cb_color="@color/colorAdd"
         app:cb_pressedRingWidth="5dp"
         android:src="@drawable/ic_action_add"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/view" />
+        android:id="@+id/add" />
 
 
 
