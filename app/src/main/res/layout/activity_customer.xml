@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/horizontalScrollView"
         android:scrollbars="none"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:clickable="true">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -22,72 +23,30 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:id="@+id/imginncafe"
+                android:src="@drawable/inncafe"
+                android:onClick=""/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:id="@+id/imgkopuklu"
+                android:src="@drawable/kopuklu"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:id="@+id/imgpiazza"
+                android:src="@drawable/piazza"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:id="@+id/imgpigastro"
+                android:src="@drawable/pigastro"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:id="@+id/imgsima"
+                android:src="@drawable/sima"/>
         </LinearLayout>
     </HorizontalScrollView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Piazza"
-        android:id="@+id/btnPiazza"
-        android:layout_below="@+id/horizontalScrollView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pigastro"
-        android:id="@+id/btnPigastro"
-        android:layout_below="@+id/btnPiazza"
-        android:layout_toLeftOf="@+id/btnKopuklu"
-        android:layout_toStartOf="@+id/btnKopuklu" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Köpüklü"
-        android:id="@+id/btnKopuklu"
-        android:layout_below="@+id/btnPigastro"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="62dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Şima"
-        android:id="@+id/btnSima"
-        android:layout_below="@+id/btnKopuklu"
-        android:layout_toRightOf="@+id/btnPigastro"
-        android:layout_toEndOf="@+id/btnPigastro"
-        android:layout_marginLeft="42dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="48dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="İnnCafe"
-        android:id="@+id/btnInnCafe"
-        android:layout_below="@+id/btnPigastro"
-        android:layout_toRightOf="@+id/btnSima"
-        android:layout_toEndOf="@+id/btnSima" />
 </RelativeLayout>
