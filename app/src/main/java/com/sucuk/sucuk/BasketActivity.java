@@ -106,7 +106,7 @@ public class BasketActivity extends Activity{
                    Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("orders").child(CustomerActivity.restaurantID).child(randomID(32));
                     OrderItem order = new OrderItem();
                     order.setAddress(editAddress.getText().toString());
-                    order.setName("hede");
+                    order.setName(LoginActivity.user);
                     order.setPhone(editPhone.getText().toString());
                     order.setDate(getNow());
                     order.setOrder("hodo");

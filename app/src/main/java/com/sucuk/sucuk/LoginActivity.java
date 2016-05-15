@@ -25,13 +25,13 @@ public class LoginActivity extends Activity {
     private Button btnSignup;
     private ProgressBar pB;
     public static String remail;
+    public static String user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_login);
-        rootRef = new CustomFirebase();
+        rootRef=new CustomFirebase();
         btnSignup = (Button) findViewById(R.id.btnSignup);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPass = (EditText) findViewById(R.id.etPass);
@@ -63,7 +63,7 @@ public class LoginActivity extends Activity {
                         q.addChildEventListener(new ChildEventListener() {
                             @Override
                             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
+                                user=email;
                                 if(dataSnapshot.getKey().equals("role") &&dataSnapshot.getValue().equals("r"))
                                 {
                                     remail=email;
