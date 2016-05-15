@@ -2,50 +2,108 @@ package com.sucuk.sucuk;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import com.firebase.client.Firebase;
 
 import at.markushi.ui.CircleButton;
 
 public class MenuActivity extends Activity {
 
     CircleButton btnBasket;
-
+    ListView list;
+    String restaurant="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Bundle bundle = getIntent().getExtras();
-        switch(bundle.getInt("Rest"))
-        {
+        Bundle bundle=new Bundle();
+
+        if(getIntent() != null)
+            bundle = getIntent().getExtras();
+        switch (bundle.getInt("Rest")) {
             case 2131492946:
-                //TODO System.out.println("inncafe");
+                restaurant="inncafe";
+                Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
             case 2131492947:
-                //TODO System.out.println("kopuklu");
+                restaurant="kopuklu";
+                Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
             case 2131492948:
-                //TODO System.out.println("piazza");
+                restaurant="piazza";
+                Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
             case 2131492949:
-                //TODO System.out.println("pigastro");
+                restaurant="pigastro";
+                Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
             case 2131492950:
-                //TODO System.out.println("sima");
+                restaurant="sima";
+                Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
+
         }
+        Log.d("Tag",restaurant);
+        list = (ListView) findViewById(R.id.menuList);
+        Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("restaurants").child(restaurant).child("menu");
+        final ListAdapter adapter = new MenuAdapter(ref, this);
+        list.setAdapter(adapter);
+        adapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                list.setSelection(adapter.getCount() - 1);
+            }
+        });
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        list = (ListView) findViewById(R.id.menuList);
+        Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("restaurants").child(restaurant).child("menu");
+        final ListAdapter adapter = new MenuAdapter(ref, this);
+        list.setAdapter(adapter);
+        adapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                list.setSelection(adapter.getCount() - 1);
+            }
+        });
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -60,15 +118,17 @@ public class MenuActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
         finish();
     }
+
     public void toBasket(View v) {
-        Intent intent = new Intent(MenuActivity.this,BasketActivity.class);
-        //intent.putExtra("Rest","Piazza");
-        startActivityForResult(intent,1);
+        Intent intent = new Intent(MenuActivity.this, BasketActivity.class);
+        intent.putExtra("Rest", "Piazza");
+        startActivity(intent);
     }
 }
 

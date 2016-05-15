@@ -6,15 +6,16 @@ import android.view.View;
 
 import android.widget.TextView;
 
-import com.firebase.client.Firebase;
+
+import com.firebase.client.Query;
 import com.firebase.ui.FirebaseListAdapter;
 
 
 public class MenuAdapter extends FirebaseListAdapter<MenuItem> {
 
 
-    public MenuAdapter(Activity activity, Class<MenuItem> modelClass, int modelLayout, Firebase ref) {
-        super(activity, modelClass,R.layout.meal_list_item, ref);
+    public MenuAdapter(Query ref,Activity activity) {
+        super(activity,MenuItem.class,R.layout.meal_list_item, ref);
     }
 
     @Override
