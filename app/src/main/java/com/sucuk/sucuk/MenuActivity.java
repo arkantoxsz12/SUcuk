@@ -5,56 +5,26 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
-import at.markushi.ui.CircleButton;
-
 public class MenuActivity extends Activity {
 
     ListView list;
-    String restaurant="";
+    String restaurant=CustomerActivity.restaurantID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-
-        switch (CustomerActivity.restaurantID) {
-            case 2131492946:
-                System.out.println("inncafe");
-                restaurant="inncafe";
-                break;
-            case 2131492947:
-                System.out.println("kopuklu");
-                restaurant="kopuklu";
-                break;
-            case 2131492948:
-                System.out.println("piazza");
-                restaurant="piazza";
-                break;
-            case 2131492949:
-                System.out.println("pigastro");
-                restaurant="pigastro";
-                break;
-            case 2131492950:
-                System.out.println("sima");
-                restaurant="sima";
-                break;
-        }
-        Log.d("Tag",restaurant);
         list = (ListView) findViewById(R.id.menuList);
         Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("restaurants").child(restaurant).child("menu");
         final ListAdapter adapter = new MenuAdapter(ref, this);

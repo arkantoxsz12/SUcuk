@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class CustomerActivity extends Activity {
 
-    public static int restaurantID;
+    public static String restaurantID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +23,23 @@ public class CustomerActivity extends Activity {
     public void sendToMenu(View v)
     {
         Intent intent = new Intent(CustomerActivity.this,MenuActivity.class);
-        restaurantID=v.getId();
-        System.out.println(restaurantID);
+        switch(v.getId()){
+            case R.id.imginncafe:
+                restaurantID="inncafe";
+                break;
+            case R.id.imgkopuklu:
+                restaurantID="kopuklu";
+                break;
+            case R.id.imgpiazza:
+                restaurantID="piazza";
+                break;
+            case R.id.imgsima:
+                restaurantID="sima";
+                break;
+            case R.id.imgpigastro:
+                restaurantID="pigastro";
+                break;
+        }
         startActivityForResult(intent,1);
     }
     @Override

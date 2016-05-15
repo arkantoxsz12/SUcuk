@@ -24,6 +24,7 @@ public class LoginActivity extends Activity {
     private Button btnLogin;
     private Button btnSignup;
     private ProgressBar pB;
+    public static String remail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,6 +43,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 rootRef.userCreate(etEmail.getText().toString().trim(), etPass.getText().toString().trim());
+                sendToast("User created!");
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -64,9 +66,11 @@ public class LoginActivity extends Activity {
 
                                 if(dataSnapshot.getKey().equals("role") &&dataSnapshot.getValue().equals("r"))
                                 {
+                                    remail=email;
                                     pB.setVisibility(View.GONE);
                                     Intent intent = new Intent(LoginActivity.this, RestaurantActivity.class);
                                     startActivity(intent);
+
 
                                 }
                                 else if(dataSnapshot.getKey().equals("role") &&dataSnapshot.getValue().equals("c"))
@@ -90,6 +94,7 @@ public class LoginActivity extends Activity {
                             public void onCancelled(FirebaseError firebaseError) {
                             }
                         });
+
                     }
 
                     @Override

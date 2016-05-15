@@ -1,26 +1,25 @@
 package com.sucuk.sucuk;
 
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.ContentValues;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class BasketActivity extends Activity{
-
+    final Context context=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +33,8 @@ public class BasketActivity extends Activity{
         list.setAdapter(cursorAdapter);
         list.setLongClickable(true);
 
+
+
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
 
@@ -45,14 +46,52 @@ public class BasketActivity extends Activity{
                 getContentResolver().delete(uri,noteFilter,null);
                 sendToast("Item removed basket");
                 cursorAdapter.notifyDataSetChanged();
+
                 return true;
             }
         });
+
+
     }
     public void cancelAll(View v)
     {
         Uri uri = Uri.parse(OrderProvider.CONTENT_URI+"/");
-        getContentResolver().delete(uri,"1=1",null);
+        getContentResolver().delete(uri, "1=1", null);
+    }
+    public void order(View v){
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_basket);
+        dialog.setTitle("Payment & Delivery Info");
+
+        Button buttonOK = (Button)dialog.findViewById(R.id.dialogOK);
+        Button buttonCancel = (Button) dialog.findViewById(R.id.dialogCancel);
+        final EditText editPhone = (EditText) dialog.findViewById(R.id.editPhone);
+        final EditText editAddress = (EditText) dialog.findViewById(R.id.editAddress);
+        buttonOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(editPhone.getText().toString().length()==0){
+                    Toast.makeText(context,"Please enter your phone number!",Toast.LENGTH_SHORT).show();
+                }else{
+                    dialog.hide();
+                    Toast.makeText(getBaseContext(),"Order taken!",Toast.LENGTH_SHORT);
+                    finish();
+                }
+
+            }
+        });
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.hide();
+            }
+        });
+
+        dialog.show();
+
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
