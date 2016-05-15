@@ -2,10 +2,25 @@ package com.sucuk.sucuk;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
-public class OrderDetailsActivity extends Activity {
+import com.firebase.client.Firebase;
 
+public class OrderDetailsActivity extends Activity {
+    Firebase ref;
+    private static String id;
+    public  void deny(View v){
+        ref.child(id).removeValue();
+        Log.d("Tag",id);
+        RestaurantActivity.item.setStatus("denied");
+    }
+    public void accept(View v){
+        ref.child(id).removeValue();
+        Log.d("Tag",id);
+        RestaurantActivity.item.setStatus("accepted");
+    }
     public String parseOrder()
     {
         String word=RestaurantActivity.item.getOrder();
@@ -67,7 +82,10 @@ public class OrderDetailsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
+        Firebase.setAndroidContext(this);
+        ref=new Firebase("https://dazzling-torch-792.firebaseio.com").child("orders").child(RestaurantActivity.getRestaurant());;
 
+        id=RestaurantActivity.item.getId();
         TextView z = ((TextView) findViewById(R.id.address));
         z.setText(RestaurantActivity.item.getAddress());
         TextView x = ((TextView) findViewById(R.id.payment));

@@ -1,13 +1,10 @@
 package com.sucuk.sucuk;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.DataSetObserver;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
-import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -18,8 +15,8 @@ public class RestaurantActivity extends Activity {
     ListView list;
     public static com.sucuk.sucuk.OrderItem item;
 
-    public String getRestaurant() {
-        return LoginActivity.remail.substring(0, LoginActivity.remail.indexOf("@"));
+    public static String getRestaurant() {
+        return LoginActivity.user.substring(0, LoginActivity.user.indexOf("@"));
     }
 
     @Override

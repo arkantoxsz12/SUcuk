@@ -5,13 +5,13 @@ package com.sucuk.sucuk;
  */
 public class OrderItem {
     private String name;
-    private double price;
     private String date;
     private String order;
     private String address;
     private String payment;
     private String phone;
     private String status;
+    private String id;
 
     public OrderItem() {
     }
@@ -22,14 +22,6 @@ public class OrderItem {
 
     public void setName(String orderNum) {
         this.name = orderNum;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getDate() {
@@ -78,5 +70,13 @@ public class OrderItem {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
