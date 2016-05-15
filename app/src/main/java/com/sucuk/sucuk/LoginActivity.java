@@ -20,11 +20,9 @@ import com.firebase.client.Query;
 public class LoginActivity extends Activity {
 
     CustomFirebase rootRef;
-    private Button btnLogout;
     private Button btnLogin;
     private Button btnSignup;
     private ProgressBar pB;
-    public static String remail;
     public static String user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +64,7 @@ public class LoginActivity extends Activity {
                                 user=email;
                                 if(dataSnapshot.getKey().equals("role") &&dataSnapshot.getValue().equals("r"))
                                 {
-                                    remail=email;
+
                                     pB.setVisibility(View.GONE);
                                     Intent intent = new Intent(LoginActivity.this, RestaurantActivity.class);
                                     startActivity(intent);
