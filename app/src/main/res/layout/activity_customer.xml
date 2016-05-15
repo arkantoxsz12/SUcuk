@@ -26,27 +26,31 @@
                 android:layout_height="100dp"
                 android:id="@+id/imginncafe"
                 android:src="@drawable/inncafe"
-                android:onClick=""/>
+                android:onClick="sendToMenu"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/imgkopuklu"
-                android:src="@drawable/kopuklu"/>
+                android:src="@drawable/kopuklu"
+                android:onClick="sendToMenu"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/imgpiazza"
-                android:src="@drawable/piazza"/>
+                android:src="@drawable/piazza"
+                android:onClick="sendToMenu"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/imgpigastro"
-                android:src="@drawable/pigastro"/>
+                android:src="@drawable/pigastro"
+                android:onClick="sendToMenu"/>
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/imgsima"
-                android:src="@drawable/sima"/>
+                android:src="@drawable/sima"
+                android:onClick="sendToMenu"/>
         </LinearLayout>
     </HorizontalScrollView>
 
