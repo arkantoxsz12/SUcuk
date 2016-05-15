@@ -1,6 +1,7 @@
 package com.sucuk.sucuk;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -48,7 +49,11 @@ public class BasketActivity extends Activity{
             }
         });
     }
-
+    public void cancelAll(View v)
+    {
+        Uri uri = Uri.parse(OrderProvider.CONTENT_URI+"/");
+        getContentResolver().delete(uri,"1=1",null);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
