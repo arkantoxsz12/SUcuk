@@ -13,6 +13,7 @@ import android.widget.VideoView;
 public class CustomerActivity extends Activity {
 
     ImageView btnPiazza,btnPigastro,btnInn,btnKopuklu,btnSima;
+    public static int restaurantID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,7 @@ public class CustomerActivity extends Activity {
     public void sendToMenu(View v)
     {
         Intent intent = new Intent(CustomerActivity.this,MenuActivity.class);
+        restaurantID=v.getId();
         intent.putExtra("Rest",v.getId());
         startActivityForResult(intent,1);
     }
