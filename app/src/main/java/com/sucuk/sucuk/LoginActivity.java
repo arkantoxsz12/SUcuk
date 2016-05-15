@@ -31,7 +31,7 @@ public class LoginActivity extends Activity {
     private Button btnLogin;
     private Button btnSignup;
     private ProgressBar pB;
-    ArrayList<User> usernames = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

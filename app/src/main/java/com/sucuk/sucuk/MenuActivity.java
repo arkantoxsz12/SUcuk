@@ -21,37 +21,28 @@ import at.markushi.ui.CircleButton;
 
 public class MenuActivity extends Activity {
 
-    CircleButton btnBasket;
     ListView list;
     String restaurant="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-       // Bundle bundle=new Bundle();
 
-        //if(getIntent().getExtras() != null)
-        //    bundle = getIntent().getExtras();
         switch (CustomerActivity.restaurantID) {
             case 2131492946:
                 restaurant="inncafe";
-                //Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
             case 2131492947:
                 restaurant="kopuklu";
-                //Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
             case 2131492948:
                 restaurant="piazza";
-               // Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
             case 2131492949:
                 restaurant="pigastro";
-                //Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
             case 2131492950:
                 restaurant="sima";
-               // Log.d("Tag", Integer.toString(bundle.getInt("Rest")));
                 break;
 
         }
