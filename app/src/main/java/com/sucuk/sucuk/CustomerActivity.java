@@ -21,7 +21,7 @@ public class CustomerActivity extends Activity {
         btnPiazza.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustomerActivity.this,TrialActivity.class);
+                Intent intent = new Intent(CustomerActivity.this,MenuActivity.class);
                 intent.putExtra("Rest","Piazza");
                 startActivityForResult(intent,1);
             }
@@ -31,7 +31,7 @@ public class CustomerActivity extends Activity {
         btnPigastro.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustomerActivity.this,TrialActivity.class);
+                Intent intent = new Intent(CustomerActivity.this,MenuActivity.class);
                 intent.putExtra("Rest","Pigastro");
                 startActivityForResult(intent,1);
             }
@@ -40,7 +40,7 @@ public class CustomerActivity extends Activity {
         btnInn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustomerActivity.this,TrialActivity.class);
+                Intent intent = new Intent(CustomerActivity.this,MenuActivity.class);
                 intent.putExtra("Rest","Inncafe");
                 startActivityForResult(intent,1);
             }
@@ -50,7 +50,7 @@ public class CustomerActivity extends Activity {
         btnKopuklu.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustomerActivity.this,TrialActivity.class);
+                Intent intent = new Intent(CustomerActivity.this,MenuActivity.class);
                 intent.putExtra("Rest","Kopuklu");
                 startActivityForResult(intent,1);
             }
@@ -59,7 +59,7 @@ public class CustomerActivity extends Activity {
         btnSima.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustomerActivity.this,TrialActivity.class);
+                Intent intent = new Intent(CustomerActivity.this,MenuActivity.class);
                 intent.putExtra("Rest","Sima");
                 startActivityForResult(intent,1);
             }
