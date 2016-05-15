@@ -20,16 +20,6 @@ public class MenuActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        btnBasket= (CircleButton) findViewById(R.id.basket);
-        btnBasket.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuActivity.this,BasketActivity.class);
-                intent.putExtra("Rest","Piazza");
-                startActivityForResult(intent,1);
-            }
-        });
     }
 
     @Override
@@ -57,6 +47,11 @@ public class MenuActivity extends Activity {
     public void onBackPressed(){
         super.onBackPressed();
         finish();
+    }
+    public void toBasket(View v) {
+        Intent intent = new Intent(MenuActivity.this,BasketActivity.class);
+        //intent.putExtra("Rest","Piazza");
+        startActivityForResult(intent,1);
     }
 }
 

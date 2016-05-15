@@ -32,56 +32,50 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_login);
-        rootRef=new CustomFirebase();
+        rootRef = new CustomFirebase();
 
         btnSignup = (Button) findViewById(R.id.btnSignup);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPass = (EditText) findViewById(R.id.etPass);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        pB = (ProgressBar)findViewById(R.id.progressBar);
+        pB = (ProgressBar) findViewById(R.id.progressBar);
         pB.setVisibility(View.GONE);
 
-        btnSignup.setOnClickListener(new View.OnClickListener(){
+        btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v) {
-                rootRef.userCreate(etEmail.getText().toString().trim(),etPass.getText().toString().trim());
+            public void onClick(View v) {
+                rootRef.userCreate(etEmail.getText().toString().trim(), etPass.getText().toString().trim());
             }
         });
-        btnLogin.setOnClickListener(new View.OnClickListener(){
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pB.setVisibility(View.VISIBLE);
-                final String email=etEmail.getText().toString().trim();
-                String pass=etPass.getText().toString().trim();
+                final String email = etEmail.getText().toString().trim();
+                String pass = etPass.getText().toString().trim();
                 Firebase.AuthResultHandler authResultHandler = new Firebase.AuthResultHandler() {
                     @Override
                     public void onAuthenticated(AuthData authData) {
-                        Log.d("Login","success");
-                        Log.d("Login UID",authData.getUid().toString());
+                        Log.d("Login", "success");
+                        Log.d("Login UID", authData.getUid().toString());
 
                         Map<String, String> map = new HashMap<String, String>();
-                        String uname=email.substring(0,email.indexOf('@'));
-                        map.put("uname",uname);
-                        map.put("role","c");
+                        String uname = email.substring(0, email.indexOf('@'));
+                        map.put("uname", uname);
+                        map.put("role", "c");
                         rootRef.child("users").child(authData.getUid()).setValue(map);
                         pB.setVisibility(View.GONE);
-                        Intent intent = new Intent(LoginActivity.this,CustomerActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
                         startActivity(intent);
                     }
+
                     @Override
                     public void onAuthenticationError(FirebaseError firebaseError) {
-                        Log.d("Login","Fail");
+                        Log.d("Login", "Fail");
                         pB.setVisibility(View.GONE);
                     }
                 };
-                rootRef.authWithPassword(email,pass,authResultHandler);
-            }
-        });
-        btnLogout = (Button) findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                rootRef.userLogout();
+                rootRef.authWithPassword(email, pass, authResultHandler);
             }
         });
     }
