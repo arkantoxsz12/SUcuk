@@ -20,15 +20,32 @@ public class MenuActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        Bundle bundle = getIntent().getExtras();
+        switch(bundle.getInt("Rest"))
+        {
+            case 2131492946:
+                //TODO System.out.println("inncafe");
+                break;
+            case 2131492947:
+                //TODO System.out.println("kopuklu");
+                break;
+            case 2131492948:
+                //TODO System.out.println("piazza");
+                break;
+            case 2131492949:
+                //TODO System.out.println("pigastro");
+                break;
+            case 2131492950:
+                //TODO System.out.println("sima");
+                break;
+        }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
