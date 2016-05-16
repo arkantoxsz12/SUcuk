@@ -15,11 +15,13 @@ public class OrderDetailsActivity extends Activity {
         ref.child(id).removeValue();
         Log.d("Tag",id);
         RestaurantActivity.item.setStatus("denied");
+        finish();
     }
     public void accept(View v){
         ref.child(id).removeValue();
         Log.d("Tag",id);
         RestaurantActivity.item.setStatus("accepted");
+        finish();
     }
     public String parseOrder()
     {
@@ -40,7 +42,7 @@ public class OrderDetailsActivity extends Activity {
             Double p=Double.parseDouble(price);
             Double q=Double.parseDouble(quantity);
             price=Double.toString(p*q);
-            result+="\nPrice: "+price;
+            result+="\nPrice: "+price+" TL";
         }
         else
         {
@@ -58,7 +60,7 @@ public class OrderDetailsActivity extends Activity {
                 Double p=Double.parseDouble(price);
                 Double q=Double.parseDouble(quantity);
                 price=Double.toString(p*q);
-                result+="\nPrice: "+price+"\n";
+                result+="\nPrice: "+price+" TL"+"\n";
 
             }
             food=word.substring(0,word.indexOf('$'));
@@ -71,7 +73,7 @@ public class OrderDetailsActivity extends Activity {
             Double p=Double.parseDouble(price);
             Double q=Double.parseDouble(quantity);
             price=Double.toString(p*q);
-            result+="\nPrice: "+price;
+            result+="\nPrice: "+price+" TL";
         }
 
         return result;

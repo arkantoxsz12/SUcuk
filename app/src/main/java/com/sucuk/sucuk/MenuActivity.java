@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.DataSetObserver;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,7 +66,7 @@ public class MenuActivity extends Activity {
                 ContentValues values = new ContentValues();
                 values.put(DBOpenHelper.MENU_NAME,item.getName());
                 values.put(DBOpenHelper.MENU_PRICE,item.getPrice());
-                Uri uri =getContentResolver().insert(OrderProvider.CONTENT_URI,values);
+                getContentResolver().insert(OrderProvider.CONTENT_URI,values);
                 sendToast(item.getName()+" added to the basket");
 
             }

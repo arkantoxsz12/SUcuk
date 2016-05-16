@@ -9,21 +9,25 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBOpenHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "sucuk.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 8;
 
     //Constants for identifying table and columns
     public static final String TABLE_ORDER = "orders";
-    public static final String ORDER_ID = "_id";
     public static final String MENU_NAME = "menuName";
     public static final String MENU_PRICE = "menuPrice";
+    public static final String MENU_COUNT = "menuCount";
+    public static final String MENU_CREATED ="menuCreated";
+    public static final String ORDER_ID ="_id";
 
-    public static final String[] ALL_COLUMNS = {ORDER_ID,MENU_NAME,MENU_PRICE};
+    public static final String[] ALL_COLUMNS = {ORDER_ID,MENU_NAME,MENU_PRICE,MENU_COUNT,MENU_CREATED};
     //SQL to create table
     private static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_ORDER + " (" +
                     ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    MENU_NAME + " TEXT, " +
-                    MENU_PRICE + " INTEGER " +
+                    MENU_NAME + " TEXT UNIQUE, " +
+                    MENU_PRICE + " REAL, " +
+                    MENU_COUNT +" INTEGER, " +
+                    MENU_CREATED + " TEXT default CURRENT_TIMESTAMP " +
                     ")";
 
 

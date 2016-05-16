@@ -1,13 +1,10 @@
 package com.sucuk.sucuk;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 public class CustomerActivity extends Activity {
 
@@ -16,9 +13,8 @@ public class CustomerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-
-
-
+        Uri uri = Uri.parse(OrderProvider.CONTENT_URI+"/");
+        getContentResolver().delete(uri, "1=1", null);
     }
     public void sendToMenu(View v)
     {

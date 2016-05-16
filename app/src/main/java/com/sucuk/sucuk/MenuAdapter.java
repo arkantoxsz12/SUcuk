@@ -20,7 +20,7 @@ public class MenuAdapter extends FirebaseListAdapter<MenuItem> {
 
     @Override
     protected void populateView(View view, MenuItem menuItem, int i) {
-        ((TextView)view.findViewById(R.id.mealPrice)).setText(Double.toString(menuItem.getPrice()));
+        ((TextView)view.findViewById(R.id.mealPrice)).setText(Double.toString(menuItem.getPrice())+" TL");
         ((TextView)view.findViewById(R.id.mealName)).setText(menuItem.getName());
     }
 

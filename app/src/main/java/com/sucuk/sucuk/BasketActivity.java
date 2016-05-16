@@ -26,18 +26,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 public class BasketActivity extends Activity{
     final Context context=this;
     String payment="";
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket);
-
+        dialog= new Dialog(context);
         Cursor cursor = getContentResolver().query(OrderProvider.CONTENT_URI,DBOpenHelper.ALL_COLUMNS,null,null,null);
-        String [] from = {DBOpenHelper.MENU_NAME,DBOpenHelper.MENU_PRICE};
+        String [] from = {DBOpenHelper.MENU_NAME,DBOpenHelper.MENU_COUNT};
         int[] to = {android.R.id.text1,android.R.id.text2};
         final CursorAdapter cursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_2,cursor,from,to,0);
         ListView list = (ListView) findViewById(android.R.id.list);
@@ -55,22 +55,21 @@ public class BasketActivity extends Activity{
                 String noteFilter = DBOpenHelper.ORDER_ID + "=" + uri.getLastPathSegment();
                 System.out.println(noteFilter);
                 getContentResolver().delete(uri,noteFilter,null);
-                sendToast("Item removed basket");
-                cursorAdapter.notifyDataSetChanged();
+                sendToast("Item removed from basket");
 
                 return true;
             }
         });
-
 
     }
     public void cancelAll(View v)
     {
         Uri uri = Uri.parse(OrderProvider.CONTENT_URI+"/");
         getContentResolver().delete(uri, "1=1", null);
+        sendToast("All items removed from basket");
     }
     public void order(View v){
-        final Dialog dialog = new Dialog(context);
+
         dialog.setContentView(R.layout.dialog_basket);
         dialog.setTitle("Payment & Delivery Info");
 
@@ -102,19 +101,20 @@ public class BasketActivity extends Activity{
                 if(editPhone.getText().toString().length()==0 || payment.length()==0){
                     Toast.makeText(context,"Please check your phone number/payment method",Toast.LENGTH_SHORT).show();
                 }else{
-                    String randomID = randomID(32);
-                   Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("orders").child(CustomerActivity.restaurantID).child(randomID);
+                    String randomID = randomID();
+                   Firebase ref = new CustomFirebase("orders").child(CustomerActivity.restaurantID).child(randomID);
                     OrderItem order = new OrderItem();
                     order.setAddress(editAddress.getText().toString());
                     order.setName(LoginActivity.user);
                     order.setPhone(editPhone.getText().toString());
                     order.setDate(getNow());
-                    order.setOrder("hodo");
+                    order.setOrder(getOrder());
                     order.setPayment(payment);
+                    order.setStatus("In Progress");
                     order.setId(randomID);
                     ref.setValue(order);
                     dialog.hide();
-                    Toast.makeText(getBaseContext(), "Order taken!", Toast.LENGTH_SHORT);
+                    Toast.makeText(BasketActivity.this, "Order taken!", Toast.LENGTH_SHORT);
                     Uri uri = Uri.parse(OrderProvider.CONTENT_URI+"/");
                     getContentResolver().delete(uri, "1=1", null);
                 }
@@ -127,11 +127,25 @@ public class BasketActivity extends Activity{
                 dialog.hide();
             }
         });
-
         dialog.show();
-
-
-
+    }
+    private String getOrder() {
+        String result="";
+        Cursor cursor = getContentResolver().query(OrderProvider.CONTENT_URI,DBOpenHelper.ALL_COLUMNS,null,null,null);
+        if(cursor.moveToFirst())
+        {
+            do{
+                String menuItem,menuPrice,menuCount;
+                menuItem=cursor.getString(cursor.getColumnIndex(DBOpenHelper.MENU_NAME));
+                result+=menuItem+'$';
+                menuCount=cursor.getString(cursor.getColumnIndex(DBOpenHelper.MENU_COUNT));
+                result+=menuCount+"$";
+                menuPrice=cursor.getString(cursor.getColumnIndex(DBOpenHelper.MENU_PRICE));
+                result+=menuPrice+'/';
+            }while(cursor.moveToNext());
+            result=result.substring(0,result.length()-1);
+        }
+        return result;
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -166,18 +180,21 @@ public class BasketActivity extends Activity{
     public void sendToast(String message) {
         Toast.makeText(BasketActivity.this, message, Toast.LENGTH_SHORT).show();
     }
-    private String randomID(int numchars){
-        Random r = new Random();
-        StringBuffer sb = new StringBuffer();
-        while(sb.length() < numchars){
-            sb.append(Integer.toHexString(r.nextInt()));
-        }
+    private String randomID(){
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
 
-        return sb.toString().substring(0, numchars);
+        return formatter.format(date);
     }
     private static String getNow(){
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         return formatter.format(date);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dialog.dismiss();
     }
 }
