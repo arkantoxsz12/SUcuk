@@ -1,4 +1,4 @@
-package com.sucuk.sucuk;
+package com.sucuk.sucuk.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -7,12 +7,14 @@ import android.widget.TextView;
 
 import com.firebase.client.Query;
 import com.firebase.ui.FirebaseListAdapter;
+import com.sucuk.sucuk.Bean.OrderItem;
+import com.sucuk.sucuk.R;
 
 
 public class OrderAdapter extends FirebaseListAdapter<OrderItem> {
 
     public OrderAdapter(Query ref, Activity activity) {
-        super(activity, OrderItem.class, R.layout.order_list_item, ref);
+        super(activity, OrderItem.class, R.layout.list_order, ref);
     }
 
     @SuppressLint("SetTextI18n")

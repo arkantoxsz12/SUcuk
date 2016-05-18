@@ -1,4 +1,4 @@
-package com.sucuk.sucuk;
+package com.sucuk.sucuk.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,10 +10,13 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.firebase.client.Firebase;
+import com.sucuk.sucuk.Adapter.OrderAdapter;
+import com.sucuk.sucuk.Bean.OrderItem;
+import com.sucuk.sucuk.R;
 
 public class RestaurantActivity extends Activity {
     ListView list;
-    public static com.sucuk.sucuk.OrderItem item;
+    public static OrderItem item;
 
     public static String getRestaurant() {
         return LoginActivity.user.substring(0, LoginActivity.user.indexOf("@"));
@@ -44,7 +47,7 @@ public class RestaurantActivity extends Activity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                item = (com.sucuk.sucuk.OrderItem) parent.getItemAtPosition(position);
+                item = (OrderItem) parent.getItemAtPosition(position);
 
                 Intent intent = new Intent(RestaurantActivity.this, OrderDetailsActivity.class);
                 startActivity(intent);

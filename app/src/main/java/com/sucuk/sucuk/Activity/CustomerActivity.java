@@ -1,10 +1,13 @@
-package com.sucuk.sucuk;
+package com.sucuk.sucuk.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+
+import com.sucuk.sucuk.OrderProvider;
+import com.sucuk.sucuk.R;
 
 public class CustomerActivity extends Activity {
 

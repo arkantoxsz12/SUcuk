@@ -12,33 +12,38 @@
         android:theme="@style/AppTheme"
         >
 
-        <activity android:name=".LoginActivity"
+        <activity android:name=".Activity.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RestaurantActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".CustomerActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.RestaurantActivity" android:screenOrientation="portrait"/>
+
+
+        <activity android:name=".Activity.CustomerActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <activity
-            android:name=".MenuActivity"
+            android:name=".Activity.MenuActivity"
             android:label="@string/title_activity_menu"
-            android:parentActivityName=".CustomerActivity"
+            android:parentActivityName=".Activity.CustomerActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sucuk.sucuk.CustomerActivity" />
+                android:value=".Activity.CustomerActivity" />
         </activity>
         <activity
-            android:name=".BasketActivity"
+            android:name=".Activity.BasketActivity"
             android:label="@string/title_activity_basket"
-            android:parentActivityName=".MenuActivity"
+            android:parentActivityName=".Activity.MenuActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sucuk.sucuk.MenuActivity" />
+                android:value=".Activity.MenuActivity" />
         </activity>
 
         <provider
@@ -46,7 +51,7 @@
             android:authorities="com.sucuk.suck.orderprovider"
             android:exported="false" />
 
-        <activity android:name=".OrderDetailsActivity"
+        <activity android:name=".Activity.OrderDetailsActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

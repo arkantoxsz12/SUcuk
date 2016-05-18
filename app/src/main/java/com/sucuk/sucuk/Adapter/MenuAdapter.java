@@ -1,4 +1,4 @@
-package com.sucuk.sucuk;
+package com.sucuk.sucuk.Adapter;
 
 import android.app.Activity;
 ;
@@ -9,13 +9,15 @@ import android.widget.TextView;
 
 import com.firebase.client.Query;
 import com.firebase.ui.FirebaseListAdapter;
+import com.sucuk.sucuk.Bean.MenuItem;
+import com.sucuk.sucuk.R;
 
 
 public class MenuAdapter extends FirebaseListAdapter<MenuItem> {
 
 
     public MenuAdapter(Query ref,Activity activity) {
-        super(activity,MenuItem.class,R.layout.meal_list_item, ref);
+        super(activity,MenuItem.class, R.layout.list_meal, ref);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.sucuk.sucuk;
+package com.sucuk.sucuk.Activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.sucuk.sucuk.R;
 
 public class OrderDetailsActivity extends Activity {
     Firebase ref;
@@ -83,7 +84,7 @@ public class OrderDetailsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_details);
+        setContentView(R.layout.activity_order);
         Firebase.setAndroidContext(this);
         ref=new Firebase("https://dazzling-torch-792.firebaseio.com").child("orders").child(RestaurantActivity.getRestaurant());;
 

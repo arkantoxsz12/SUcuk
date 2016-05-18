@@ -1,4 +1,4 @@
-package com.sucuk.sucuk;
+package com.sucuk.sucuk.Activity;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -14,16 +14,25 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.sucuk.sucuk.Adapter.MenuAdapter;
+import com.sucuk.sucuk.DBOpenHelper;
+import com.sucuk.sucuk.OrderProvider;
+import com.sucuk.sucuk.R;
+
+import at.markushi.ui.CircleButton;
 
 public class MenuActivity extends Activity {
 
     ListView list;
+    CircleButton btnBskt;
     String restaurant=CustomerActivity.restaurantID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        btnBskt = (CircleButton) findViewById(R.id.btnBskt);
 
+        btnBskt.setVisibility(View.GONE);
         list = (ListView) findViewById(R.id.menuList);
         Firebase ref = new Firebase("https://dazzling-torch-792.firebaseio.com").child("restaurants").child(restaurant).child("menu");
         final ListAdapter adapter = new MenuAdapter(ref, this);
@@ -62,13 +71,15 @@ public class MenuActivity extends Activity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent,View view,int position, long id){
-                com.sucuk.sucuk.MenuItem item = (com.sucuk.sucuk.MenuItem) parent.getItemAtPosition(position);
+                com.sucuk.sucuk.Bean.MenuItem item = (com.sucuk.sucuk.Bean.MenuItem) parent.getItemAtPosition(position);
                 ContentValues values = new ContentValues();
                 values.put(DBOpenHelper.MENU_NAME,item.getName());
                 values.put(DBOpenHelper.MENU_PRICE,item.getPrice());
                 getContentResolver().insert(OrderProvider.CONTENT_URI,values);
                 sendToast(item.getName()+" added to the basket");
-
+                if(btnBskt.getVisibility()==View.GONE) {
+                    btnBskt.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

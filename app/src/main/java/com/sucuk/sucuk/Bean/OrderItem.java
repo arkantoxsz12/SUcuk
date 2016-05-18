@@ -1,4 +1,4 @@
-package com.sucuk.sucuk;
+package com.sucuk.sucuk.Bean;
 
 /**
  * Created by idokurel on 15.05.2016.
@@ -13,7 +13,15 @@ public class OrderItem {
     private String status;
     private String id;
 
-    public OrderItem() {
+    public OrderItem(String address, String date, String id, String order, String name, String payment, String status, String phone) {
+        this.address = address;
+        this.date = date;
+        this.id = id;
+        this.order = order;
+        this.name = name;
+        this.payment = payment;
+        this.status = status;
+        this.phone = phone;
     }
 
     public String getName() {

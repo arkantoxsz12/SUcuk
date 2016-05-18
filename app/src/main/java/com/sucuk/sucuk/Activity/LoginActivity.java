@@ -1,10 +1,11 @@
-package com.sucuk.sucuk;
+package com.sucuk.sucuk.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -16,6 +17,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
+import com.sucuk.sucuk.CustomFirebase;
+import com.sucuk.sucuk.R;
 
 public class LoginActivity extends Activity {
 
@@ -28,8 +31,9 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
-        setContentView(R.layout.activity_login);
         rootRef=new CustomFirebase();
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_login);
         btnSignup = (Button) findViewById(R.id.btnSignup);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPass = (EditText) findViewById(R.id.etPass);
@@ -92,9 +96,7 @@ public class LoginActivity extends Activity {
                             public void onCancelled(FirebaseError firebaseError) {
                             }
                         });
-
                     }
-
                     @Override
                     public void onAuthenticationError(FirebaseError firebaseError) {
                         sendToast("Wrong credentials");

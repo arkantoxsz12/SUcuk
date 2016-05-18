@@ -29,18 +29,14 @@ public class OrderProvider extends ContentProvider {
     }
     private SQLiteDatabase database;
     @Override
-
     public boolean onCreate() {
         DBOpenHelper helper = new DBOpenHelper(getContext());
         database = helper.getWritableDatabase();
         return true;
     }
-
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-
-
         return database.query(DBOpenHelper.TABLE_ORDER,DBOpenHelper.ALL_COLUMNS,selection,null,null,null,DBOpenHelper.MENU_CREATED+" DESC");
     }
 
@@ -53,18 +49,13 @@ public class OrderProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-
         String menuFilter = DBOpenHelper.MENU_NAME+"='"+values.getAsString(DBOpenHelper.MENU_NAME)+"'";
         System.out.println(menuFilter);
         Cursor cursor= database.query(DBOpenHelper.TABLE_ORDER,DBOpenHelper.ALL_COLUMNS,menuFilter,null,null,null,DBOpenHelper.MENU_CREATED+" DESC");
         if(cursor.moveToFirst())
-        {
             values.put(DBOpenHelper.MENU_COUNT,cursor.getInt(cursor.getColumnIndex(DBOpenHelper.MENU_COUNT))+1);
-        }
         else
-        {
             values.put(DBOpenHelper.MENU_COUNT,1);
-        }
         long id= database.replace(DBOpenHelper.TABLE_ORDER,null,values);
         return Uri.parse(BASE_PATH+"/"+id);
     }
