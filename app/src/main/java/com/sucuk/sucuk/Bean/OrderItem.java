@@ -24,6 +24,9 @@ public class OrderItem {
         this.phone = phone;
     }
 
+    public OrderItem() {
+    }
+
     public String getName() {
         return name;
     }
